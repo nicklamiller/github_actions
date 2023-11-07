@@ -1,0 +1,16 @@
+on:
+  issue_comment:
+    types:
+      - created
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check PR Comment
+        run: |
+          if [[ "${{ github.event.comment.body }}" == *"/trigger-ci"* ]]; then
+            echo "CI triggered by comment"
+            # Add your build and test steps here
+          fi
